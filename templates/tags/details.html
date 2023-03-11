@@ -1,0 +1,60 @@
+{% extends 'main.html' %}
+{% block title %}tag details{% endblock %}
+{%block scrum%}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/tags">Tags</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Tag details</li>
+  </ol>
+{%endblock%}
+
+{% block body %}
+
+<h2 class="">Tag Detail Page</h2>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="mb-3" >
+                <div class="row g-0">
+                  <div class="col-12">
+                    <div class="card-body">
+                    <div class="card">
+                        <div class="card-body">
+                          <h3 class="card-title">Badge: <span class="badge rounded-pill bg-body-secondary" style="color:black ;">{{ tag.name }}</span></h3>
+                          <br>
+                          <h5 class="card-subtitle">Tag posts</h5>
+                          <br>
+                          
+                          <ul class="list-group">
+                            {%if tag.posts %}
+                            {% for post in tag.posts %}
+
+                            <li class="list-group-item"><a href="/posts/{{ post.id }}" title="{{ post.title }}" style="color: black;" ><b >{{ post.title }}</b> </a></li>
+                            <small><small>{{ post.friendly_date }}</small></small> 
+                            <hr>
+                             {% endfor %}
+                            {% else %}
+                            
+                            <li class="list-group-item">No posts!</li>
+
+                            {% endif %}
+                           
+                          </ul>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="col-12">
+                        <!--<a href="/tags" class="btn btn-sm btn-secondary"><i class="fas far fa-window-close"></i>&nbsp;Cancel</a>-->
+                        <a href="/tags/{{tag.id}}/edit" class="btn btn-sm btn-warning"><i class="fas fa-pen"></i>&nbsp;Edit</a>
+                        <a href="/tags/{{tag.id}}/delete" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i>&nbsp;Delete</a>
+                      </div>
+                    </div>
+                  </div>        
+                  </div>
+                </div>
+              </div> 
+        </div>
+    </div>
+  </div>
+<br>
+{% endblock %}

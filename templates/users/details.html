@@ -1,0 +1,65 @@
+{% extends 'main.html' %}
+{% block title %}User details{% endblock %}
+{%block scrum%}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/users">Users</a></li>
+    <li class="breadcrumb-item active" aria-current="page">details</li>
+  </ol>
+{%endblock%}
+
+{% block body %}
+
+<h1 class="">Details</h1>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    {% if user.image_url != "" %}
+                    <img loading="lazy" src="{{user.image_url}}" class="img-fluid rounded-start" alt="...">
+                    {% else %}
+                    <img loading="lazy" src="https://qph.cf2.quoracdn.net/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq" class="img-fluid rounded-start" alt="...">
+                    {% endif %}
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h3 class="card-title">{{user.full_name}}</h3>
+                      <div class="col-12">
+                        <a href="/users/{{user.id}}/edit" class="btn btn-sm btn-warning"><i class="fas fa-pen"></i>&nbsp;Edit</a>
+                        <a href="/users/{{user.id}}/delete" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i>&nbsp;Delete</a>
+                      </div>
+                    </div>
+                   
+                    <div class="card-body">
+                      <h4 class="card-title">Posts</h4>
+                      <a href="/users/{{user.id}}/posts/new" class="btn btn-sm btn-warning"><i class="fas fa-plus-circle"></i>&nbsp;Add</a>
+                      <div class="col-12">
+                        <br>
+                       
+                       <div>
+                          <ul>
+                            {% if user.posts %}
+                            {% for post in user.posts %}
+                          <li ><a href="/posts/{{ post.id }}" title="{{ post.title }}" style="color: black;" ><b >{{ post.title }}</b> </a></li>
+                          <small><small>{{ post.friendly_date }}</small></small> 
+                          <hr>
+                           {% endfor %}
+                            {% else %}
+                            <li >No posts</li>
+                            {% endif%}
+                            
+                          </ul>
+                        </div>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+        </div>
+    </div>
+  </div>
+<br>
+{% endblock %}

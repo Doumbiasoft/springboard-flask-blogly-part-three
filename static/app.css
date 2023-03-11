@@ -1,0 +1,10 @@
+.navbar {
+    background-color: black;
+    overflow: hidden;
+    box-shadow: -2px -4px 8px rgb(255 255 255 / 60%), 2px 4px 8px rgb(0 0 0 / 30%);
+
+}
+.navbar ol li a {
+    text-decoration: none;
+    color: #ffc107;
+}

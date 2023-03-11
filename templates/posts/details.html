@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+{% block title %}post details{% endblock %}
+{%block scrum%}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/users">Users</a></li>
+    <li class="breadcrumb-item"><a href="/users/{{post.user.id}}">User details</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Post details</li>
+  </ol>
+{%endblock%}
+
+{% block body %}
+
+<h2 class="">Post Detail Page</h2>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="mb-3" >
+                <div class="row g-0">
+                  <div class="col-12">
+                    <div class="card-body">
+                    <div class="card">
+                        <div class="card-body">
+                          <h3 class="card-title">{{ post.title }} </h3>
+                         <p class="card-text">{{ post.content }}</p>
+                         <small>By <b>{{post.user.full_name}}</b> on {{ post.friendly_date }}</small>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="col-12">
+                        <a href="/users/{{post.user.id}}" class="btn btn-sm btn-secondary"><i class="fas far fa-window-close"></i>&nbsp;Cancel</a>
+                        <a href="/posts/{{post.id}}/edit" class="btn btn-sm btn-warning"><i class="fas fa-pen"></i>&nbsp;Edit</a>
+                        <a href="/posts/{{post.id}}/delete" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i>&nbsp;Delete</a>
+                      </div>
+                    </div>
+                  </div>        
+                  </div>
+                </div>
+              </div> 
+        </div>
+    </div>
+  </div>
+<br>
+{% endblock %}

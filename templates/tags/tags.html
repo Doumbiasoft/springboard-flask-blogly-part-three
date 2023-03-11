@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+{% block title %}List of tag{% endblock %}
+{%block scrum%}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Tags</li>
+  </ol>
+{%endblock%}
+
+{% block body %}
+
+<h1 class="">Tags</h1>
+<div class="card">
+    <div class="card-body">
+      <div class="p-20">
+        <a href="/tags/new" class="btn btn-sm btn-warning"><i class="fas fa-plus-circle"></i>&nbsp;Add</a>
+    </div>
+        <div class="row">
+            <div class="col-12">
+                <br>
+                <div class="col-12">
+                    <br>
+                   <div>
+                    <ul class="list-group">
+                      {% for tag in tags %}
+                      <li class="list-group-item"><a href="/tags/{{ tag.id }}" title="{{ tag.name }}" style="color: black;" ><b >{{ tag.name }}</b> </a></li>
+                      {% endfor %}
+                    </ul>
+                    </div>
+                    <br>
+                  </div>
+            </div>
+          </div>
+    </div>
+  </div>
+  <br>
+{% endblock %}

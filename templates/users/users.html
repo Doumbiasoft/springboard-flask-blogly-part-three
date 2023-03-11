@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+{% block title %}List of users{% endblock %}
+{%block scrum%}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Users</li>
+  </ol>
+{%endblock%}
+
+{% block body %}
+
+<h1 class="">Users</h1>
+<div class="card">
+    <div class="card-body">
+        <div class="p-20">
+            <a href="/users/new" class="btn btn-sm btn-warning"><i class="fas fa-plus-circle"></i>&nbsp;Add</a>
+        </div>
+        <br>
+        <h5 class="card-title">Item(s) [ {{count}} ]</h5>
+        <div class="row card-body">
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+                
+                  <table id="user_table" class="table table-sm">
+                      <thead >
+                        <th scope="col">&nbsp;<i class="fas far fa-user fa-lg"></i></th>
+                        <th >Name</th>
+                        <th >Details</th>
+                      </thead>
+                      <tbody class="table-group-divider">
+                        {% for user in users %}
+                        <tr>
+                          <td>
+                            {% if user.image_url != "" %}
+                            <img loading="lazy" class="rounded-circle" alt="avatar1" width="30" height="30" src="{{user.image_url}}" />
+                            {% else %}
+                            <img loading="lazy" class="rounded-circle" alt="avatar1" width="30" height="30" src="https://qph.cf2.quoracdn.net/main-qimg-6d72b77c81c9841bd98fc806d702e859-lq" />
+                            {% endif %}
+                          </td>
+                          <td>{{ user.full_name }}</td>
+                          <td><a href="/users/{{user.id}}" title="details" class="btn btn-sm btn-warning"><i class="fas fa-search"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+              </div>
+          </div>
+          </div>
+
+          </div>
+    </div>
+  </div>
+
+{% endblock %}

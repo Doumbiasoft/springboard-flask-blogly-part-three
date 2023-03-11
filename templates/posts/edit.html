@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% block title %}Edit post{% endblock %}
+{%block scrum%}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/users">Users</a></li>
+    <li class="breadcrumb-item"><a href="/users/{{post.user.id}}">User details</a></li>
+    <li class="breadcrumb-item"><a href="/posts/{{post.id}}">Post details</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit post</li>
+  </ol>
+{%endblock%}
+
+{% block body %}
+
+<h1 class="">User: {{post.user.full_name}}</h1>
+<div class="card">
+    <div class="card-body">
+        <h4 class="">Edit a post</h4>
+        <div class="row">
+            <form action="/posts/{{post.id}}/edit" method="POST" class="row g-3">
+                <div class="col-12">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="{{ post.title }}" required>
+                  </div>
+                <div class="col-12">
+                  <label for="content" class="form-label">Last name</label>
+                  <textarea class="form-control"id="content" name="content" style="height: 187px;" required>{{ post.content }}</textarea>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    {% for tag in tags %}
+                    <div>
+                      <input class="form-check-input"
+                             type="checkbox"
+                             value="{{ tag.id }}"
+                             id="tag_{{ tag.id }}"
+                             {% if tag in post.tags %}checked{% endif %}
+                             
+                             name="tags">
+                      <label class="form-check-label" for="tag_{{ tag.id }}">
+                        {{ tag.name }}
+                      </label>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+     
+                <div class="col-12">
+                    <a href="/posts/{{post.id}}" class="btn btn-sm btn-secondary"><i class="fas far fa-window-close"></i>&nbsp;Cancel</a>
+                  <button type="submit" class="btn btn-warning btn-sm"><i class="fas far far fa-check-square"></i>&nbsp;Save</button>
+                </div>
+              </form>
+          </div>
+    </div>
+  </div>
+
+{% endblock %}
